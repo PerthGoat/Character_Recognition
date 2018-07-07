@@ -3,17 +3,25 @@
 <html lang='en'>
 <head>
 	<style type='text/css'>
+		body {font-family:arial;}
 		canvas {border:1px solid black;}
+		#the_letter {background-color:gray;
+					display:inline-block;}
 	</style>
 </head>
 <body>
-<canvas width='100px' height='100px' id='theCanvas'></canvas>
+Draw a letter in 1 stroke (hold mouse the entire time, and then release the mouse)<br>
+<canvas width='100px' height='100px' id='theCanvas'></canvas><br>
+<span>I see..</span><br><h3><span id='the_letter'>Nothing</span></h3>
+<input type='button' value='CLEAR' onclick='clear_all()';>
 <script type='text/javascript'>
 	var canvas = document.getElementById("theCanvas");
 	
 	var ctx = canvas.getContext("2d");
 	
 	var canvas_rect = canvas.getBoundingClientRect();
+	
+	var letter_box = document.getElementById("the_letter");
 	
 	var x0 = -1;
 	var y0 = -1;
@@ -39,11 +47,18 @@
 	["LEFT", "DOWN", "RIGHT", "UP", "LEFT"], // number 6
 	["RIGHT", "DOWN"], // number 7
 	["LEFT", "DOWN", "RIGHT", "DOWN", "LEFT", "UP", "RIGHT", "UP"], // number 8
+	["LEFT", "DOWN", "RIGHT", "DOWN", "LEFT", "UP"], // 8 alternative
+	["LEFT", "DOWN", "LEFT", "UP", "RIGHT", "UP"], // 8 alternative 2
 	["UP", "LEFT", "DOWN", "RIGHT"], // number 9
 	["LEFT", "DOWN", "RIGHT", "UP", "DOWN"] // number 9 ALTERNATIVE DRAWING METHOD
 	];
 	
-	var vals = [0, 1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 9, 9];
+	var vals = [0, 1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 8, 8, 9, 9];
+	
+	function clear_all() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		letter_box.innerHTML = "Nothing";
+	}
 	
 	function recordStroke(s) {
 		if(stroke != s) {
@@ -56,7 +71,8 @@
 		
 		for(var i = 0;i < patterns.length;i++) {
 			if(patterns[i].length === strokes.length && patterns[i].every(function(v,i) { return v === strokes[i]})) {
-				console.log(vals[i]);
+				letter_box.innerHTML = vals[i];
+				//console.log(vals[i]);
 				break;
 			}
 		}
