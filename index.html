@@ -40,6 +40,7 @@ Draw a letter in 1 stroke (hold mouse the entire time, and then release the mous
 	["DOWN"], // number 1
 	["UP"], // number 1 ALTERNATIVE DRAWING METHOD
 	["RIGHT", "DOWN", "LEFT", "RIGHT"], // number 2
+	["UP", "RIGHT", "DOWN", "LEFT", "RIGHT"], // number 2 alternative
 	["RIGHT", "DOWN", "LEFT", "RIGHT", "DOWN", "LEFT"], // number 3
 	["RIGHT", "DOWN", "LEFT", "DOWN", "LEFT"], // number 3 ALTERNATIVE
 	["DOWN", "RIGHT", "UP", "DOWN"], // number 4
@@ -53,7 +54,7 @@ Draw a letter in 1 stroke (hold mouse the entire time, and then release the mous
 	["LEFT", "DOWN", "RIGHT", "UP", "DOWN"] // number 9 ALTERNATIVE DRAWING METHOD
 	];
 	
-	var vals = [0, 1, 1, 2, 3, 3, 4, 5, 6, 7, 8, 8, 8, 9, 9];
+	var vals = [0, 1, 1, 2, 2, 3, 3, 4, 5, 6, 7, 8, 8, 8, 9, 9];
 	
 	function clear_all() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
